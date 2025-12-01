@@ -76,6 +76,11 @@ export default function Home() {
                   finales se confirmarán tras un análisis completo con nuestro
                   equipo comercial.
                 </p>
+                <p className="text-xs text-amber-200">
+                  El cálculo preliminar no sustituye una propuesta formal, está
+                  sujeto a validación técnica y a la firma de acuerdos
+                  comerciales.
+                </p>
               </div>
               <div className="flex flex-wrap gap-3">
                 <Link
