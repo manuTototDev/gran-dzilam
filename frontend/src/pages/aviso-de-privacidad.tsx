@@ -95,6 +95,23 @@ export default function AvisoDePrivacidad() {
                 navegador.
               </p>
             </section>
+
+            <section className="space-y-3">
+              <h2 className="text-xl font-semibold text-amber-100">Conservación y contacto</h2>
+              <p className="text-base text-slate-200">
+                Conservaremos tus datos únicamente mientras sean necesarios para
+                las finalidades descritas y conforme a los plazos legales
+                aplicables. Para cualquier duda o solicitud adicional, escribe a{' '}
+                <a
+                  href="mailto:hola@gran-dzilam.mx"
+                  className="font-semibold text-amber-200 underline decoration-amber-200/60 underline-offset-4 hover:text-amber-10"
+                >
+                  hola@gran-dzilam.mx
+                </a>
+                , indicando el derecho que deseas ejercer y un medio de contacto
+                para recibir respuesta.
+              </p>
+            </section>
           </div>
         </div>
       </div>

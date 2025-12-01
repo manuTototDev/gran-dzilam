@@ -36,7 +36,9 @@ export function CookieBanner() {
           <p className="text-sm text-slate-200">
             Utilizamos cookies para mejorar la experiencia y recordar tus
             preferencias. Puedes aceptar todas o limitarte a las cookies
-            esenciales. Consulta el{' '}
+            esenciales. Selecciona una opción para continuar navegando o ajusta
+            tus preferencias más adelante limpiando las cookies del navegador.
+            Consulta el{' '}
             <Link
               href="/aviso-de-privacidad"
               className="font-semibold text-amber-300 underline decoration-amber-200/70 decoration-2 underline-offset-4 hover:text-amber-200"
