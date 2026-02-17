@@ -1,9 +1,45 @@
 import Head from 'next/head';
+import Image from 'next/image';
 import Link from 'next/link';
+import { useMemo, useState } from 'react';
 import { CookieBanner } from '@/components/CookieBanner';
 import { HealthStatus } from '@/components/HealthStatus';
 
+const createDemoImage = () => {
+  const svg = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1800" viewBox="0 0 1200 1800">
+      <defs>
+        <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#0f172a"/>
+          <stop offset="55%" stop-color="#1e293b"/>
+          <stop offset="100%" stop-color="#f59e0b"/>
+        </linearGradient>
+      </defs>
+      <rect width="1200" height="1800" fill="url(#bg)" />
+      <text x="80" y="220" fill="#fde68a" font-size="76" font-family="Arial, sans-serif" font-weight="700">Gran Dzilam</text>
+      <text x="80" y="330" fill="#f8fafc" font-size="52" font-family="Arial, sans-serif">Imagen generada</text>
+      <text x="80" y="420" fill="#f1f5f9" font-size="36" font-family="Arial, sans-serif">Vista móvil en modal de pantalla completa</text>
+    </svg>
+  `;
+
+  return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+};
+
 export default function Home() {
+  const [generatedImageUrl, setGeneratedImageUrl] = useState<string | null>(null);
+  const [isImageModalOpen, setIsImageModalOpen] = useState(false);
+
+  const demoImageUrl = useMemo(() => createDemoImage(), []);
+
+  const handleGenerateImage = () => {
+    setGeneratedImageUrl(demoImageUrl);
+    setIsImageModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsImageModalOpen(false);
+  };
+
   return (
     <>
       <Head>
@@ -12,9 +48,7 @@ export default function Home() {
       <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 text-slate-50">
         <header className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
           <div className="space-y-1">
-            <p className="text-sm uppercase tracking-[0.25rem] text-amber-200/80">
-              Gran Dzilam
-            </p>
+            <p className="text-sm uppercase tracking-[0.25rem] text-amber-200/80">Gran Dzilam</p>
             <h1 className="text-3xl font-bold leading-tight md:text-4xl">
               Plataforma de monitoreo y gestión
             </h1>
@@ -37,9 +71,9 @@ export default function Home() {
                 Supervisión en tiempo real del backend
               </h2>
               <p className="text-lg text-slate-200">
-                Observa el estado de los servicios críticos y actúa rápidamente
-                con información confiable. Este panel mantiene visibilidad sobre
-                la infraestructura técnica que respalda Gran Dzilam.
+                Observa el estado de los servicios críticos y actúa rápidamente con información
+                confiable. Este panel mantiene visibilidad sobre la infraestructura técnica que
+                respalda Gran Dzilam.
               </p>
               <div className="flex flex-wrap gap-3 text-sm text-slate-300">
                 <span className="rounded-full bg-slate-800 px-3 py-1">Health checks</span>
@@ -61,25 +95,20 @@ export default function Home() {
                 Solicita un estimado preliminar para tu proyecto inmobiliario
               </h3>
               <p className="text-base text-slate-200">
-                Comparte la dimensión del terreno, ubicación y necesidades clave
-                para recibir una representación inicial de costos y
-                disponibilidad. Nuestro equipo revisará tu solicitud y dará
-                seguimiento personalizado.
+                Comparte la dimensión del terreno, ubicación y necesidades clave para recibir una
+                representación inicial de costos y disponibilidad. Nuestro equipo revisará tu
+                solicitud y dará seguimiento personalizado.
               </p>
               <div className="space-y-2 rounded-2xl border border-slate-800 bg-slate-900/60 p-4">
-                <p className="text-sm font-semibold text-amber-100">
-                  Importante
-                </p>
+                <p className="text-sm font-semibold text-amber-100">Importante</p>
                 <p className="text-sm leading-relaxed text-slate-200">
-                  Esta estimación es una representación informativa y no
-                  constituye una oferta oficial o legal. Los montos y términos
-                  finales se confirmarán tras un análisis completo con nuestro
-                  equipo comercial.
+                  Esta estimación es una representación informativa y no constituye una oferta
+                  oficial o legal. Los montos y términos finales se confirmarán tras un análisis
+                  completo con nuestro equipo comercial.
                 </p>
                 <p className="text-xs text-amber-200">
-                  El cálculo preliminar no sustituye una propuesta formal, está
-                  sujeto a validación técnica y a la firma de acuerdos
-                  comerciales.
+                  El cálculo preliminar no sustituye una propuesta formal, está sujeto a validación
+                  técnica y a la firma de acuerdos comerciales.
                 </p>
               </div>
               <div className="flex flex-wrap gap-3">
@@ -98,25 +127,30 @@ export default function Home() {
               </div>
             </div>
             <div className="space-y-4 rounded-2xl border border-slate-800 bg-slate-900/80 p-6">
-              <h4 className="text-lg font-semibold">Información recomendada</h4>
-              <ul className="space-y-3 text-sm text-slate-200">
-                <li className="flex items-start gap-3">
-                  <span className="mt-0.5 h-2 w-2 rounded-full bg-amber-300" aria-hidden />
-                  Superficie aproximada y uso previsto del terreno
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="mt-0.5 h-2 w-2 rounded-full bg-amber-300" aria-hidden />
-                  Ubicación, accesos principales y restricciones relevantes
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="mt-0.5 h-2 w-2 rounded-full bg-amber-300" aria-hidden />
-                  Servicios requeridos (infraestructura, urbanización, energía)
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="mt-0.5 h-2 w-2 rounded-full bg-amber-300" aria-hidden />
-                  Horizonte de tiempo y disponibilidad de inversión
-                </li>
-              </ul>
+              <h4 className="text-lg font-semibold">Imagen generada</h4>
+              <p className="text-sm text-slate-200">
+                En móvil, al generar una imagen se abre un modal de pantalla completa con botón de
+                descarga y botón de cierre.
+              </p>
+              <button
+                type="button"
+                onClick={handleGenerateImage}
+                className="w-full rounded-xl bg-amber-300 px-4 py-2 text-sm font-semibold text-slate-900 transition hover:bg-amber-200"
+              >
+                Generar imagen
+              </button>
+              <div
+                className="hidden h-64 rounded-xl border border-slate-700 bg-cover bg-center md:block"
+                style={
+                  generatedImageUrl ? { backgroundImage: `url(${generatedImageUrl})` } : undefined
+                }
+              >
+                {!generatedImageUrl && (
+                  <div className="flex h-full items-center justify-center text-sm text-slate-300">
+                    La imagen aparece como fondo solo en escritorio.
+                  </div>
+                )}
+              </div>
             </div>
           </section>
 
@@ -129,9 +163,9 @@ export default function Home() {
                 Transparencia y control sobre tu información
               </h3>
               <p className="text-base text-slate-200">
-                Consulta nuestro aviso de privacidad para conocer cómo
-                protegemos tus datos, las bases legales de uso y tus derechos
-                para solicitar aclaraciones o eliminar información.
+                Consulta nuestro aviso de privacidad para conocer cómo protegemos tus datos, las
+                bases legales de uso y tus derechos para solicitar aclaraciones o eliminar
+                información.
               </p>
               <div className="flex flex-wrap gap-3">
                 <Link
@@ -178,16 +212,49 @@ export default function Home() {
               >
                 Aviso de privacidad
               </Link>
-              <Link
-                href="mailto:hola@gran-dzilam.mx"
-                className="transition hover:text-slate-200"
-              >
+              <Link href="mailto:hola@gran-dzilam.mx" className="transition hover:text-slate-200">
                 Contacto
               </Link>
             </div>
           </div>
         </footer>
       </div>
+      {isImageModalOpen && generatedImageUrl && (
+        <div
+          className="fixed inset-0 z-[70] bg-slate-950 md:hidden"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Imagen generada"
+        >
+          <div className="flex items-center justify-between px-4 py-4">
+            <a
+              href={generatedImageUrl}
+              download="imagen-generada-gran-dzilam.svg"
+              className="rounded-lg bg-amber-300 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-slate-900"
+            >
+              Descargar
+            </a>
+            <button
+              type="button"
+              onClick={closeModal}
+              className="rounded-full border border-slate-500 px-3 py-1 text-2xl leading-none text-slate-100"
+              aria-label="Cerrar imagen"
+            >
+              ×
+            </button>
+          </div>
+          <div className="relative flex h-[calc(100vh-76px)] items-center justify-center p-4">
+            <Image
+              src={generatedImageUrl}
+              alt="Imagen generada"
+              fill
+              sizes="100vw"
+              className="object-contain"
+              unoptimized
+            />
+          </div>
+        </div>
+      )}
       <CookieBanner />
     </>
   );
